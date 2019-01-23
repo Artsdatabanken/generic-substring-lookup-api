@@ -10,7 +10,6 @@ cache:
   directories:
     - ~/.npm
 script:
-  - npm run test
 deploy:
   skip_cleanup: true
   provider: script
