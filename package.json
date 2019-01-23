@@ -1,13 +1,14 @@
 {
   "name": "generic-substring-lookup-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "Substring lookup API seeded from JSON dictionary.",
   "main": "src/index.js",
   "scripts": {
     "dev": "node_modules/.bin/nodemon -e js",
     "test": "echo \"Error: no test specified\" && exit 0"
   },
-  "keywords": [],
+  "keywords": ["lookup-service", "fulltext-search"],
+  "repository": "https://github.com/Artsdatabanken/generic-substring-lookup-api",
   "author": "Bjorn Reppen <bjreppen@gmail.com> (https://github.com/bjornreppen)",
   "license": "ISC",
   "dependencies": {
