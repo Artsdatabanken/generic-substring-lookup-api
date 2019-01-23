@@ -1,0 +1,22 @@
+{
+  "name": "generic-substring-lookup-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "node_modules/.bin/nodemon -e js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Bjorn Reppen <bjreppen@gmail.com> (https://github.com/bjornreppen)",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "indexed-substring-search": "^1.1.0",
+    "log-less-fancy": "^1.4.0",
+    "minimist": "^1.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
+}
