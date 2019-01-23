@@ -13,14 +13,12 @@ function loadIndex(filePath) {
   const builder = new substringIndex.SuffixTree();
   const idToObject = {};
   let id = 0;
-  Object.keys(input).forEach(url => {
-    const entry = input[url];
+  Object.keys(input).forEach(key => {
+    const entry = input[key];
     id++;
-    idToObject[id] = { url: url, title: entry.title };
-    for (const rec of Object.entries(entry)) {
-      if (rec[0] === "title") {
-        continue;
-      }
+    idToObject[id] = entry.hit;
+    if (!entry.text) return log.warn("Unknown item: " + JSON.stringify(entry));
+    for (const rec of Object.entries(entry.text)) {
       const [scoreStr, texts] = rec;
       const score = parseInt(scoreStr) / 100.0;
       if (!Number.isFinite(score))
