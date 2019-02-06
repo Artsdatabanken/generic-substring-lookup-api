@@ -1,2 +1,6 @@
-{
-}
+[
+  {"kode": "LA", "url": "Natur_i_Norge/Landskap", "title": "Landskap"},
+  {"kode": "NA", "url": "Natur_i_Norge/Natursystem", "title": "Natursystem"},
+  {"kode": "~", "url": "Katalog", "title": "Katalog"}
+]
+
