@@ -8,15 +8,14 @@ function loadJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath));
 }
 
-function loadIndex(filePath) {
+function loadIndex(filePath, builder) {
+  log.info("Laster " + filePath);
   const input = loadJson(filePath);
-  const builder = new substringIndex.SuffixTree();
-  const idToObject = {};
   let id = 0;
   Object.keys(input).forEach(key => {
     const entry = input[key];
     id++;
-    idToObject[id] = entry.hit;
+    builder.idToObject[id] = entry.hit;
     if (!entry.text) return log.warn("Unknown item: " + JSON.stringify(entry));
     for (const rec of Object.entries(entry.text)) {
       const [scoreStr, texts] = rec;
@@ -34,7 +33,6 @@ function loadIndex(filePath) {
     }
   });
   log.info("Loading index done.");
-  return { index: builder.buildIndex(), idToObject };
 }
 
 module.exports = class lookupIndex {
@@ -42,10 +40,14 @@ module.exports = class lookupIndex {
     log.info("Loading index...");
     this.nohits = loadJson(path.join(dataPath, "nohits.json"));
     this.emptyquery = loadJson(path.join(dataPath, "emptyquery.json"));
-    const fn = path.join(dataPath, "full-text-index.json");
-    const li = loadIndex(fn);
-    this.index = li.index;
-    this.idToObject = li.idToObject;
+    const builder = new substringIndex.SuffixTree();
+    builder.idToObject = {};
+    fs.readdirSync(dataPath).forEach(fn => {
+      if (fn.indexOf("full-text-index") < 0) return;
+      loadIndex(path.join(dataPath, fn), builder);
+    });
+    this.index = builder.buildIndex();
+    this.idToObject = builder.idToObject;
   }
 
   runQuery(q) {

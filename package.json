@@ -1,6 +1,6 @@
 {
   "name": "generic-substring-lookup-api",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Substring lookup API seeded from JSON dictionary.",
   "main": "src/index.js",
   "scripts": {
