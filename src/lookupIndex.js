@@ -5,7 +5,7 @@ const log = require("log-less-fancy")();
 
 function loadJson(filePath) {
   log.info("Reading " + filePath);
-  return JSON.parse(fs.readFileSync(filePath));
+  return JSON.parse(fs.readFileSync(filePath)).items;
 }
 
 function loadIndex(filePath, builder) {
