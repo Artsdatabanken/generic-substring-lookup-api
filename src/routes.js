@@ -1,10 +1,7 @@
-const path = require("path");
-
 module.exports = function(app, lookupIndex) {
-  app.get("*?", (req, res) => {
-    const path = decodeURIComponent(req.path).substring(1);
+  app.get("/v1/query", (req, res) => {
     res.setHeader("Content-Type", "application/json");
-    const result = lookupIndex.query(path);
-    res.send({ query: path, result: result });
+    const result = lookupIndex.query(req.query.q);
+    res.send({ query: req.query.q, result: result });
   });
 };

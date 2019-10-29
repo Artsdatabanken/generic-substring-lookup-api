@@ -1,0 +1,49 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Full-text lookup API\n",
+    "version": "1.0.0",
+    "title": "Lookup API",
+    "contact": {
+      "email": "bjorn.reppen@artsdatabanken.no"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "basePath": "/v1",
+  "schemes": ["https"],
+  "paths": {
+    "/query": {
+      "get": {
+        "summary": "Fritekstsøk i typer.",
+        "description": "",
+        "operationId": "query",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "description": "Substring consisting of one or more words/fragments to search for",
+            "required": false,
+            "default": "lyng",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about generic-substring-lookup-api on GitHub",
+    "url": "https://github.com/Artsdatabanken/generic-substring-lookup-api"
+  }
+}

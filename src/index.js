@@ -1,10 +1,10 @@
-const path = require("path");
 const express = require("express");
 const log = require("log-less-fancy")();
 const minimist = require("minimist");
 const routes = require("./routes");
 const pjson = require("../package.json");
 const LookupIndex = require("./lookupIndex");
+const swagger = require("./swagger");
 
 var argv = minimist(process.argv.slice(2), {
   alias: { p: "port" },
@@ -43,6 +43,7 @@ app.use(function(req, res, next) {
 
 const lookupIndex = new LookupIndex(argv.dictionary || "./data/");
 routes(app, lookupIndex);
+swagger.init(app);
 
 const port = argv.port || 9876;
 app.listen(port, () => {
