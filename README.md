@@ -1,5 +1,7 @@
 ## Input file format
 
+- [API Documentation](https://lookup.artsdatabanken.no/)
+
 ### hit
 
 Object containing payload object to be returned from API when search terms match.
