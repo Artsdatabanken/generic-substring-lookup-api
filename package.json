@@ -1,7 +1,7 @@
 {
   "name": "generic-substring-lookup-api",
-  "version": "1.0.4",
-  "description": "Substring lookup API seeded from JSON dictionary.",
+  "version": "1.1.0",
+  "description": "Substring lookup API seeded from JSON.",
   "main": "src/index.js",
   "scripts": {
     "dev": "node_modules/.bin/nodemon -e js",
