@@ -1,0 +1,2 @@
+data/full-text-index-sted.jsonl filter=lfs diff=lfs merge=lfs -text
+data/full-text-index.json filter=lfs diff=lfs merge=lfs -text
