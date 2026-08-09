@@ -12,4 +12,4 @@ RUN groupadd -r --gid 1007 dockerrunner && useradd -r -g dockerrunner dockerrunn
 EXPOSE 9876
 ADD . .
 USER dockerrunner
-CMD [ "node", "--max_old_space_size=8192", "src/index.js", "--port", "9876", "--dataPath", "/data/" ]
+CMD [ "node", "--max_old_space_size=8192", "src/index.js", "--port", "9876", "--dataPath", "./data/" ]
