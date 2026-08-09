@@ -7,8 +7,10 @@ const LookupIndex = require("./lookupIndex");
 const swagger = require("./swagger");
 
 var argv = minimist(process.argv.slice(2), {
-  alias: { p: "port" },
-  alias: { path: "dataPath" }
+  alias: {
+    p: "port",
+    path: "dataPath"
+  }
 });
 if (argv._.length === 1) {
   console.log("Usage: node index.js [options]");
@@ -41,7 +43,7 @@ app.use(function(req, res, next) {
   }
 });
 
-const lookupIndex = new LookupIndex(argv.dictionary || "./data/");
+const lookupIndex = new LookupIndex(argv.dataPath || "./data/");
 routes(app, lookupIndex);
 swagger.init(app);
 

@@ -4,7 +4,8 @@
   "description": "Substring lookup API seeded from JSON.",
   "main": "src/index.js",
   "scripts": {
-    "dev": "node_modules/.bin/nodemon -e js",
+    "dev": "node_modules/.bin/nodemon src/index.js -- --port 9876 --dataPath ./data/",
+    "devRealData": "node_modules/.bin/nodemon src/index.js -- --port 9876 --dataPath /mnt/grunnkart/grunnkart/dockerapper/dockerdata/generic-substring-lookup-api/",
     "test": "echo \"Error: no test specified\" && exit 0"
   },
   "keywords": [
@@ -12,7 +13,7 @@
     "fulltext-search"
   ],
   "repository": "https://github.com/Artsdatabanken/generic-substring-lookup-api",
-  "author": "Bjorn Reppen <bjreppen@gmail.com> (https://github.com/bjornreppen)",
+  "author": "Stein Hoem <stein.hoem@gmail.com> (https://github.com/steinho)",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
