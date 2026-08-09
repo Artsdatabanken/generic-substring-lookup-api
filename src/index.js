@@ -43,7 +43,7 @@ app.use(function(req, res, next) {
   }
 });
 
-const lookupIndex = new LookupIndex(argv.dataPath || "./data/");
+const lookupIndex = new LookupIndex(argv.path || "./data/");
 routes(app, lookupIndex);
 swagger.init(app);
 
