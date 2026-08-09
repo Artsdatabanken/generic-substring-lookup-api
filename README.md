@@ -59,13 +59,17 @@ Then open:
 
 ### Development Mode
 
-A dev script exists:
+Run the app with nodemon for automatic restart on JavaScript file changes:
 
 ```bash
 npm run dev
 ```
 
-> Needs verification: the current script runs `nodemon -e js` without explicitly specifying the app entrypoint, so behavior may depend on your local environment.
+This starts:
+
+```bash
+node src/index.js --port 9876 --dataPath ./data/
+```
 
 ## API
 
@@ -193,10 +197,7 @@ There is also a `deploy.sh` helper that logs in to Docker Hub, pushes the image,
 
 A few implementation details are worth checking before making operational assumptions:
 
-- `src/index.js` documents `--dataPath`, but the code currently constructs `LookupIndex` using `argv.dictionary || "./data/"`.
-  - This may mean `--dataPath` is not actually used as intended.
 - The no-hit check in `src/lookupIndex.js` uses `if (!Object.keys(result))`, which may not correctly detect an empty result depending on the returned data type.
-- `npm run dev` may not start the service correctly in every environment.
 
 ## Troubleshooting
 

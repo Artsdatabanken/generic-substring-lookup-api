@@ -1,9 +1,9 @@
 {
   "swagger": "2.0",
   "info": {
-    "description": "Full-text lookup API\n",
-    "version": "1.0.0",
-    "title": "Lookup API",
+    "description": "HTTP API for substring lookup against one or more in-memory full-text index files.",
+    "version": "1.1.0",
+    "title": "Generic Substring Lookup API",
     "contact": {
       "email": "bjorn.reppen@artsdatabanken.no"
     },
@@ -13,33 +13,83 @@
     }
   },
   "basePath": "/v1",
-  "schemes": ["https"],
+  "schemes": ["https", "http"],
+  "produces": ["application/json"],
   "paths": {
     "/query": {
       "get": {
-        "summary": "Fritekstsøk i typer.",
-        "description": "",
+        "summary": "Search the substring index",
+        "description": "Returns up to 20 ranked matches for the given query string. If `q` is missing or empty, the API returns the contents of `emptyquery.json` as a sample of the data type. If there are no matches, the API returns the contents of `nohits.json`.",
         "operationId": "query",
-        "produces": ["application/json"],
         "parameters": [
           {
             "name": "q",
             "in": "query",
-            "description": "Substring consisting of one or more words/fragments to search for",
+            "description": "Substring or phrase to search for",
             "required": false,
-            "default": "lyng",
-            "type": "string"
+            "type": "string",
+            "default": "lecanorales",
+            "x-example": "lecanorales"
           }
         ],
         "responses": {
           "200": {
-            "description": "successful operation"
-          },
-          "400": {
-            "description": "Invalid status value"
+            "description": "Query executed successfully",
+            "schema": {
+              "$ref": "#/definitions/QueryResponse"
+            },
+            "examples": {
+              "application/json": {
+                "query": "lecanorales",
+                "result": [
+                  {
+                    "score": 9.13,
+                    "title": "Kantlavordenen",
+                    "url": "Biota/Fungi/Ascomycota/Pezizomycotina/Lecanoromycetes/Lecanorales"
+                  }
+                ]
+              }
+            }
           }
         }
       }
+    }
+  },
+  "definitions": {
+    "QueryResponse": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "example": "lecanorales"
+        },
+        "result": {
+          "type": "array",
+          "description": "Array of ranked result objects. For empty queries or no-hit cases, the contents depend on the configured fallback JSON files.",
+          "items": {
+            "$ref": "#/definitions/LookupResult"
+          }
+        }
+      }
+    },
+    "LookupResult": {
+      "type": "object",
+      "properties": {
+        "score": {
+          "type": "number",
+          "format": "float",
+          "example": 9.13
+        },
+        "title": {
+          "type": "string",
+          "example": "Kantlavordenen"
+        },
+        "url": {
+          "type": "string",
+          "example": "Biota/Fungi/Ascomycota/Pezizomycotina/Lecanoromycetes/Lecanorales"
+        }
+      },
+      "additionalProperties": true
     }
   },
   "externalDocs": {
