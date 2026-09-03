@@ -16,7 +16,7 @@
   "author": "Stein Hoem <stein.hoem@gmail.com> (https://github.com/steinho)",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^5.2.1",
     "indexed-substring-search": "^1.1.3",
     "log-less-fancy": "^1.4.0",
     "minimist": "^1.2.5",
